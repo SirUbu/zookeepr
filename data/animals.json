@@ -117,6 +117,16 @@
         "hungry"
       ],
       "id": "11"
+    },
+    {
+      "name": "Bobb",
+      "species": "hippopotamus",
+      "diet": "herbivore",
+      "personalityTraits": [
+        "hungry",
+        "goofy"
+      ],
+      "id": "12"
     }
   ]
 }

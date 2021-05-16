@@ -12,11 +12,14 @@ const PORT = process.env.PORT || 3001;
 // using express.js, create the server
 const app = express();
 
+// middleware start
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
-
 // parse incoming JSON data
 app.use(express.json());
+// make files readily available 
+app.use(express.static('public'));
+// middleware end
 
 // function to handle user query parameter
 function filterByQuery(query, animalsArray) {
@@ -135,6 +138,26 @@ app.post('/api/animals', (req, res) => {
         
         res.json(animal);
     }
+});
+
+// create get route for index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+// create get route for animals.html
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+// create get route for zookeepers.html
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+// create get route for wildcard
+app.get('*', (req, res) => {
+    req.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 // run server on local port 3001
